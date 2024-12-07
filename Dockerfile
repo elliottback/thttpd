@@ -3,6 +3,11 @@ FROM alpine:3.21.0
 # Install all dependencies required for compiling thttpd
 RUN apk add gcc musl-dev make
 
+# Setup directories
+WORKDIR /usr/local/app
+COPY . .
+
+# try to build the image
 RUN GCC_VERSION=$(gcc --version | grep ^gcc | sed 's/^.* //g' | awk -F. '{print $1}') \
     && echo "Found GCC_VERSION $GCC_VERSION" \
     && if [ "$GCC_VERSION" -ne 14 ]; then exit 1 ; fi \
