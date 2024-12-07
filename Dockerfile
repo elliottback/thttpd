@@ -7,6 +7,6 @@ RUN GCC_VERSION=$(gcc --version | grep ^gcc | sed 's/^.* //g' | awk -F. '{print 
     && echo "Found GCC_VERSION $GCC_VERSION" \
     && if [ "$GCC_VERSION" -ne 14 ]; then exit 1 ; fi \
     && ls -l \
-    cd thttpd \
+    && cd thttpd \
     && ./configure || cat config.log \
     && make CCOPT='-O2 -s -static' thttpd
