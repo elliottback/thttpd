@@ -1,0 +1,18 @@
+FROM alpine:3.21.0
+
+# Install all dependencies required for compiling thttpd
+RUN apk add gcc musl-dev make
+
+RUN GCC_VERSION=$(gcc --version | grep ^gcc | sed 's/^.* //g' | awk -F. '{print $1}') \
+    && echo "Found GCC_VERSION $GCC_VERSION"
+
+RUN if [ "$GCC_VERSION" -ne 14 ]; then \
+      echo "Error: GCC version is not 14" >&2 \
+      exit 1 \
+    fi
+
+# We use . for thttpd sources
+# Compile thttpd to a static binary
+RUN cd /thttpd \
+  && ./configure || cat config.log \
+  && make CCOPT='-O2 -s -static' thttpd
