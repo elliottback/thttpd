@@ -9,7 +9,7 @@ RUN GCC_VERSION=$(gcc --version | grep ^gcc | sed 's/^.* //g' | awk -F. '{print 
 RUN if [ "$GCC_VERSION" -ne 14 ]; then exit 1 ; fi
 
 # We use . for thttpd sources
+RUN ./configure || cat config.log \
+
 # Compile thttpd to a static binary
-RUN cd /thttpd \
-  && ./configure || cat config.log \
-  && make CCOPT='-O2 -s -static' thttpd
+RUN make CCOPT='-O2 -s -static' thttpd
