@@ -5,6 +5,7 @@ AC_INIT(thttpd.c)
 AC_CANONICAL_SYSTEM
 
 AC_PROG_CC
+AC_LANG(C)
 
 V_CCOPT="-O"
 if test "$GCC" = yes ; then
