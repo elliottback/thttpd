@@ -4,7 +4,7 @@ A fork of [thttpd](https://acme.com/software/thttpd/) v2.29 that compiles under 
 
 # Sample Usage
 
-Here is a sample dockerfile that runs a site on port `81` in the same folder:
+Here is a sample dockerfile that runs a static site (index.html, etc, in the same folder) on port `81`:
 
 ```dockerfile
 # Please specify the appropriate version of alpine!
